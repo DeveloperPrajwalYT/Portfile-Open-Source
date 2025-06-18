@@ -20,7 +20,7 @@ async function getWeather() {
 function updateTime() {
   const now = new Date();
   const options = {
-    timeZone: "Europe/Istanbul",
+    timeZone: "Asia/Kathmandu",
     year: "numeric",
     month: "long",
     day: "numeric",
