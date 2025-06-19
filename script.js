@@ -29,7 +29,7 @@ function updateTime() {
     second: "2-digit"
   };
 
-  const formattedTime = now.toLocaleString("tr-TR", options);
+  const formattedTime = now.toLocaleString("np-NP", options);
   document.querySelector(".datetime").textContent = formattedTime;
 }
 
