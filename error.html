@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space 404 - Page Not Found</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/1294042351882207385/1301154023293845525/srnl.png?ex=673f211d&is=673dcf9d&hm=6f9c645931ff0b2f49de2a835c20db8d6baa469dd5a6dfb24d063bb45174e916&">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1294042351882207385/1301154023293845525/srnl.png?ex=673f211d&is=673dcf9d&hm=6f9c645931ff0b2f49de2a835c20db8d6baa469dd5a6dfb24d063bb45174e916&">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #000033, #000066);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+        .error-code {
+            font-size: 10rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+        .error-message {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        #space-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4444ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #6666ff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="space-canvas"></canvas>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! It seems that where you are does not exist!</div>
+        <a href="/" class="back-button">Return to Launch Pad</a>
+    </div>
+    <script>
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        class Star {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2;
+                this.speed = Math.random() * 3;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+            }
+            update() {
+                this.x -= this.speed;
+                if (this.x < 0) this.reset();
+            }
+        }
+        const stars = Array.from({ length: 200 }, () => new Star());
+        function animate() {
+            ctx.fillStyle = 'rgba(0,0,51,0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"94f9b9a2fc3e7f55","version":"2025.6.2","r":1,"token":"4b7a6168e9c4476fb64ce8e73a4e671c","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>
