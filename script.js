@@ -1,5 +1,5 @@
 const apiKey = "3af1494b2952fb227643fee0721546cf";
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=Sivas,tr&appid=" + apiKey;
+const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=Kathmandu,np&appid=" + apiKey;
 
 // Sıcaklık ve nem bilgisini çek
 async function getWeather() {
